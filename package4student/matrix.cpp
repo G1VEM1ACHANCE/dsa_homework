@@ -20,7 +20,7 @@ Matrix::Matrix(const Matrix& rhs) //copy constructor
 {
 	double **array = new double *[rhs.row];
 	for(int i=0;i<rhs.row;i++)
-		array[i]=new double *[rhs.col];
+		array[i]=new double [rhs.col];
 	for(int i=0;i<rhs.row;i++)
 		for(int j=0;j<rhs.col;j++)
 			array[i][j]=rhs.array[i][j];
@@ -76,10 +76,13 @@ Matrix Matrix::operator -(const Matrix& rhs) const
 
 Matrix Matrix::operator +(const Matrix& rhs) const
 {
+	row=rhs.row;
+	col=rhs.col;
 	Matrix temp (row,col);
 	for (int i=0;i<row;i++)
 		for(int j=0;j<col;j++)
 			temp.array[i][j]+=array[i][j]+rhs[i][j];
+	return temp;
 }
 
 Matrix Matrix::operator *(const Matrix& rhs) const
@@ -91,7 +94,7 @@ Matrix Matrix::operator *(const Matrix& rhs) const
 				temp[i][j]=array[i][k]*rhs[k][j];
 }
 
-Matrix Matrix::operator /(const Matrix& rhs) const
+/*Matrix Matrix::operator /(const Matrix& rhs) const
 {
 }
 
@@ -107,7 +110,7 @@ Matrix Matrix::inverse() const
 				I[i][j]=0;
 	
 }
-
+*/
 void Matrix::read(const char* fn)
 {
 	int r, c;
