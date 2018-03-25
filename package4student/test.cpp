@@ -98,7 +98,7 @@ int main(int argc, char* argv[]){
 		d.print();
 		a = e * a * d;
 		a.print();
-	} /*else if(cmd=="division"){
+	} else if(cmd=="division"){
 		Matrix a(5, 5);
 		Matrix b(a);
 		rand_gen(a);
@@ -117,6 +117,6 @@ int main(int argc, char* argv[]){
 		a.write(str.data());
 		b.read(str.data());
 		b.print();
-	}*/ else
+	} else
 		puts("Unknown argument!");
 }

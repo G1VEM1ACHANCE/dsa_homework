@@ -3,11 +3,12 @@ int main()
 {
 	int n,i,j,k,l;
 	scanf("%d",&n);
-	int array[n][n],col=n,row=n;
+	double array[n][n];
+	int col=n,row=n;
 	int times=0;
 	for(i=0;i<row;i++)
 		for(j=0;j<col;j++)
-			scanf("%d",&array[i][j]);
+			scanf("%lf",&array[i][j]);
 	double I[n][n];
 	for (i=0;i<row;i++)
 		for(j=0;j<col;j++)
@@ -17,19 +18,41 @@ int main()
 			else
 				I[i][j]=0;
 		}
-	for(k=0;k<row;k++)
+	for(times=0;times<row;times++)
 	{
-		if(k=times)
-			continue;
-		for(l=0;l<col;l++)
+		for(k=0;k<row;k++)
 		{
-			array[k][l]-=array[times][l]*(array[k][times]/array[times][times]);
-			I[k][l]-=I[times][l]*(array[k][times]/array[times][times]);
+			double temp = 0;
+			temp = array[k][times]/array[times][times];
+			if(k==times)
+				continue;
+			for(l=0;l<col;l++)
+			{
+				array[k][l]-=array[times][l]*temp;
+				I[k][l]-=I[times][l]*temp;
+			}
+		}
+	}
+	i=0;
+	for(i=0;i<n;i++)
+	{
+		
+		if(array[i][i]!=1)
+		{
+			int temp1=array[i][i];
+			array[i][i]/=array[i][i];
+			for(j=0;j<n;j++)
+			{
+				I[i][j]/=temp1 ;
+			}
 		}
 	}
 	for(i=0;i<n;i++)
+	{
+		printf("\n");
 		for(j=0;j<n;j++)
-			printf("%d",array[i][j]);
+			printf("%lf",I[i][j]);
+	}
 	return 0;
 
 }
