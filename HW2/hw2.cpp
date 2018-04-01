@@ -6,9 +6,8 @@
 #include<sstream>
 #include<string>
 
-ifstream cryptocurrencyin;
 using namespace std;
-	struct  Cryptocurrency
+typedef struct  Cryptocurrency
 	{
 		char date[8];
 		char currencyname[30];
@@ -16,20 +15,20 @@ using namespace std;
 		float low;
 		float high;
 		long long cap;
-	};
-int main(void)
+	} Currency;
+//Currency 是用來呼叫structure 
+//Currencys strtucture 的名字
+int main(int argc, char *argv[])
 {
 	FILE *fp;
-	fp = fopen("filename.txt");
+	fp = fopen(argv[1],"r");
+    Currency vector<int>Currencys;
+    vec.reserve(50);
+    int i=0;
 	if(!fp)
-	{
-		printf("FAIL TO OPEN\n");
-		exit(1);
-	}
 	while(!feof(fp))
 	{
-		fscanf(fp,"%s%s%s%f%f% lld")
+		fscanf(fp,"%s%s%s%f%f%lld",Currencys[i].date,Currencys[i].currencyname,Currencys[i].exchangestore,&Currencys[i].low,&Currencys[i].high,&Currencys[i].cap);
+    }
+
 			
-
-
-
