@@ -14,11 +14,14 @@ typedef struct Cryptocurrency
     long long cap;
 }Currency;
 int main(){
-Currency Currencys[];
+Currency Currencys;
+vector<Currency> Currencies;
+Currencies.reserve(3);
 int i=0;
 for(i=0;i<5;i++)
 {
-    scanf("%s%s%s%f%f%lld",Currencys[i].date,Currencys[i].currencyname,Currencys[i].exchangestore,&Currencys[i].low,&Currencys[i].high,&Currencys[i].cap);
+    scanf("%s%s%s%f%f%lld",Currencys.date,Currencys.currencyname,Currencys.exchangestore,&Currencys.low,&Currencys.high,&Currencys.cap);
+    Currencies.push_back(Currencys);
 }
-printf("%s",Currencys[4].currencyname);
+printf("%s",Currencies[1].currencyname);
 }
