@@ -50,3 +50,5 @@ for(i=0;i<5;i++)
     printf("%s\n",vec[i]->exchangestore);
    
 }
+
+
