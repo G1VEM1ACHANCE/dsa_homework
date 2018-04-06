@@ -51,7 +51,8 @@ int main(){
         int first=0;
         int last = size-1;
         char exchangestore2[30],currencyname2[30];
-        int date1;    
+        int date1;
+        int flag=0;
         if(strcmp(command,"queries")==0)
         {
             int mid = (first+last)/2;      
@@ -64,7 +65,6 @@ int main(){
             {
                 if(first==last)
                 {
-                    printf("%d",mid);
                     break;
                 }
                 mid = (first+last)/2; 
@@ -74,7 +74,10 @@ int main(){
                 }
                 if(date1<vec[mid]->date)
                 {
-                    last=mid-1;   
+                    if(mid==0)
+                        last=mid;
+                    else
+                        last=mid-1;
                 }
                 if(date1==vec[mid]->date)
                 {
@@ -84,7 +87,10 @@ int main(){
                     }
                     if(currencyname1<a1)
                     {
-                        last=mid-1;
+                        if(mid==0)
+                            last=mid;
+                        else
+                            last=mid-1;
                     }
                     if(currencyname1==a1)
                     {
@@ -94,13 +100,26 @@ int main(){
                         }
                         if(exchangestore1<b1)
                         {
-                            last = mid-1;
+                            if(mid==0)
+                                last=mid;
+                            else
+                                last=mid-1;
                         }
                         else
-                            printf("%d",mid);
+                        {
+                            break;                        }
                         
                     }
                 }
+            }
+            if(first==last&&(vec[mid]->date!=date1||vec[mid]->currencyname!=currencyname1||vec[mid]->exchangestore!=exchangestore1))
+            {
+                printf("none");
+                continue;
+            }
+            else
+            {
+                printf("%f %f %lld",vec[mid]->low,vec[mid]->high,vec[mid]->cap);
             }
         }
     }

@@ -48,27 +48,33 @@ int main(){
         char currencyname2[30];
         int date1;
         char c[4];
+      
         if(strcmp(command,"price")==0)
         {
             int mid = (first+last)/2;
             scanf("%s%d%s",c,&date1,currencyname2);
-            
             string currencyname1=currencyname2;
             string a1=vec1[mid]->currencyname;
+            
            while(first<=last)
             {
+                mid = (first+last)/2;
+                 a1=vec1[mid]->currencyname;
                 if(first==last)
                 {
                     break;
                 }
-                mid = (first+last)/2;
+                
                 if(date1>vec1[mid]->date)
                 {
                     first=mid+1;
                 }
                 if(date1<vec1[mid]->date)
                 {
-                    last=mid-1;
+                    if(mid==0)
+                        last=mid;
+                    else
+                        last=mid-1;
                 }
                 if(date1==vec1[mid]->date)
                 {
@@ -78,19 +84,29 @@ int main(){
                     }
                     if(currencyname1<a1)
                     {
-                        last=mid-1;
+                        if(mid==0)
+                            last=mid;
+                        else
+                            last=mid-1;
                     }
                     if(currencyname1==a1)
                     {
                         break;
                     }
                 }
+               
             }
+     
             int i=last;
             int tempdate=vec1[mid]->date;
             string tempcurrency=vec1[mid]->currencyname;
             int tempdate1=vec1[i]->date;
             string tempcurrency1=vec1[i]->currencyname;
+            if(first==last&&(date1!=tempdate||currencyname1!=tempcurrency))
+            {
+                printf("none");
+                continue;
+            }
             while(tempdate!=tempdate1||tempcurrency!=tempcurrency1)
             {
                 i--;
@@ -103,3 +119,4 @@ int main(){
         }
     }
 }
+

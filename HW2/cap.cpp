@@ -47,7 +47,7 @@ int main(){
         char exchangestore2[30];
         int date1;
         char c[4];
-        if(strcmp(command,"price")==0)
+        if(strcmp(command,"cap")==0)
         {
             int mid = (first+last)/2;
             scanf("%d%s",&date1,exchangestore2);
@@ -67,7 +67,10 @@ int main(){
                 }
                 if(date1<vec3[mid]->date)
                 {
-                    last=mid-1;
+                    if(mid==0)
+                        last=mid;
+                    else
+                        last=mid-1;
                 }
                 if(date1==vec3[mid]->date)
                 {
@@ -77,7 +80,10 @@ int main(){
                     }
                     if(exchangestore1<a1)
                     {
-                        last=mid-1;
+                        if(mid==0)
+                            last=mid;
+                        else
+                            last=mid-1;
                     }
                     if(exchangestore1==a1)
                     {
@@ -92,7 +98,16 @@ int main(){
             string tempcurrency1=vec3[i]->exchangestore;
             int tempdate2=vec3[j]->date;
             string tempexchangestore2=vec3[j]->exchangestore;
-            
+            if(first==last&&(date1!=tempdate||exchangestore1!=tempcurrency))
+            {
+                printf("none");
+                continue;
+            }
+            else if(first==last)
+            {
+                printf("%lld",vec3[first]->cap);
+                continue;
+            }
             while(tempdate!=tempdate2||tempcurrency!=tempexchangestore2)
             {
                 j++;
@@ -106,7 +121,10 @@ int main(){
                 tempdate1=vec3[i]->date;
                 tempcurrency1=vec3[i]->exchangestore;
             }
-            printf(" %d %d",i,j);
+            long long int count=0;
+            for(int k=j;k<=i;k++)
+                count+=vec3[k]->cap;
+            printf("%lld",count);
             
             
         }

@@ -68,7 +68,10 @@ int main(){
                 }
                 if(date1<vec2[mid]->date)
                 {
-                    last=mid-1;
+                    if(mid==0)
+                        last=mid;
+                    else
+                        last=mid-1;
                 }
                 if(date1==vec2[mid]->date)
                 {
@@ -78,7 +81,10 @@ int main(){
                     }
                     if(currencyname1<a1)
                     {
-                        last=mid-1;
+                        if(mid==0)
+                            last=mid;
+                        else
+                            last=mid-1;
                     }
                     if(currencyname1==a1)
                     {
@@ -91,6 +97,11 @@ int main(){
             string tempcurrency=vec2[mid]->currencyname;
             int tempdate1=vec2[i]->date;
             string tempcurrency1=vec2[i]->currencyname;
+            if(first==last&&(date1!=tempdate||currencyname1!=tempcurrency))
+            {
+                printf("none");
+                continue;
+            }
             while(tempdate!=tempdate1||tempcurrency!=tempcurrency1)
             {
                 i++;
