@@ -14,7 +14,7 @@ typedef struct Cryptocurrency
     float high;
     long long int cap;
 }Currency;
-bool sort2(Currency *Cur1,Currency *Cur2)
+bool sort3(Currency *Cur1,Currency *Cur2)
 {
     string a1 = Cur1->exchangestore;
     string a2 = Cur2->exchangestore;
@@ -55,12 +55,13 @@ int main(){
             string exchangestore1=exchangestore2;
             string a1=vec3[mid]->exchangestore;
             while(first<=last)
-            {
+            {   mid = (first+last)/2;
+                a1=vec3[mid]->exchangestore;
                 if(first==last)
                 {
                     break;
                 }
-                mid = (first+last)/2;
+               
                 if(date1>vec3[mid]->date)
                 {
                     first=mid+1;

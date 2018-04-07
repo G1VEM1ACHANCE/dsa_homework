@@ -31,6 +31,7 @@ int main(){
     Currency Currencys;
     Currency Currencies[5];
     Currency *vec1[5];
+         char c[4];
     int i=0;
     for(i=0;i<5;i++)
     {
@@ -42,17 +43,18 @@ int main(){
 
     while(scanf("%s",command)!=EOF)
     {
+        scanf("%s",c);
         int size=5;
         int first=0;
         int last = size-1;
         char currencyname2[30];
         int date1;
-        char c[4];
+   
       
-        if(strcmp(command,"price")==0)
+        if(strcmp(command,"price")==0&&strcmp(c,"max")==0)
         {
             int mid = (first+last)/2;
-            scanf("%s%d%s",c,&date1,currencyname2);
+            scanf("%d%s",&date1,currencyname2);
             string currencyname1=currencyname2;
             string a1=vec1[mid]->currencyname;
             

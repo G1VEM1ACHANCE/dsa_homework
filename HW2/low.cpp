@@ -13,7 +13,7 @@ typedef struct Cryptocurrency
     float high;
     long long int cap;
 }Currency;
-bool sort2(Currency *Cur1,Currency *Cur2)
+bool sort3(Currency *Cur1,Currency *Cur2)
 {
     string a1 = Cur1->currencyname;
     string a2 = Cur2->currencyname;
@@ -48,7 +48,7 @@ int main(){
         char currencyname2[30];
         int date1;
         char c[4];
-        if(strcmp(command,"price")==0)
+        if(strcmp(command,"price")==0&&strcmp(c,"min")==0)
         {
             int mid = (first+last)/2;
             scanf("%s%d%s",c,&date1,currencyname2);

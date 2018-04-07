@@ -28,7 +28,6 @@ bool sort1(Currency *Cur1,Currency *Cur2)
     if (a1==a2 && b1!=b2)
         return b1 < b2;
     return false;
-    
 }
 int main(){
     char command[10];
@@ -62,18 +61,26 @@ int main(){
             string a1=vec[mid]->currencyname;
             string b1=vec[mid]->exchangestore;
             while(first<=last)
-            {
+            {   mid = (first+last)/2;
+                a1=vec[mid]->currencyname;
+                b1=vec[mid]->exchangestore;
+                printf(" %d %d",first,last);
+                
+                cout<<mid<<b1<<exchangestore1;
                 if(first==last)
                 {
+                    printf("1");
                     break;
                 }
-                mid = (first+last)/2; 
+                
                 if(date1>vec[mid]->date)
                 {
+                    printf("2");
                     first=mid+1;
                 }
                 if(date1<vec[mid]->date)
                 {
+                    printf("3");
                     if(mid==0)
                         last=mid;
                     else
@@ -81,12 +88,15 @@ int main(){
                 }
                 if(date1==vec[mid]->date)
                 {
+                    printf("4");
                     if(currencyname1>a1)
                     {
+                        printf("5");
                         first=mid+1;
                     }
                     if(currencyname1<a1)
                     {
+                        printf("6");
                         if(mid==0)
                             last=mid;
                         else
@@ -94,24 +104,29 @@ int main(){
                     }
                     if(currencyname1==a1)
                     {
+                        printf("7");
                         if(exchangestore1>b1)
                         {
+                            printf("8");
                             first=mid+1;
                         }
-                        if(exchangestore1<b1)
+                        else if(exchangestore1<b1)
                         {
+                            printf("9");
                             if(mid==0)
                                 last=mid;
                             else
                                 last=mid-1;
                         }
-                        else
+                        if(exchangestore1==b1)
                         {
-                            break;                        }
-                        
+                            break;
+                        }
+                   
                     }
                 }
             }
+         
             if(first==last&&(vec[mid]->date!=date1||vec[mid]->currencyname!=currencyname1||vec[mid]->exchangestore!=exchangestore1))
             {
                 printf("none");
