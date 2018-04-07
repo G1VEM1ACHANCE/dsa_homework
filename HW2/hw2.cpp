@@ -175,7 +175,7 @@ int main(int argc, char *argv[])
             }
             else
             {
-                printf("%f %f %lld",vec[mid]->low,vec[mid]->high,vec[mid]->cap);
+                printf("%.4f %.4f %lld\n",vec[mid]->low,vec[mid]->high,vec[mid]->cap);
                 continue;
             }
         }
@@ -250,7 +250,7 @@ int main(int argc, char *argv[])
                 tempdate1=vec1[i]->date;
                 tempcurrency1=vec1[i]->currencyname;
             }
-            printf("%f",vec1[i]->high);
+            printf("%.4f\n",vec1[i]->high);
         }
         if(strcmp(command,"price")==0&&strcmp(c,"min")==0)
         {
@@ -312,7 +312,7 @@ int main(int argc, char *argv[])
                 tempdate1=vec2[i]->date;
                 tempcurrency1=vec2[i]->currencyname;
             }
-            printf("%f",vec2[i]->low);
+            printf("%.4f\n",vec2[i]->low);
         }
         if(strcmp(command,"cap")==0)
         {
@@ -373,7 +373,7 @@ int main(int argc, char *argv[])
             }
             else if(first==last)
             {
-                printf("%lld",vec3[first]->cap);
+                printf("%lld\n",vec3[first]->cap);
                 continue;
             }
             while(tempdate!=tempdate2||tempcurrency!=tempexchangestore2)
@@ -392,7 +392,7 @@ int main(int argc, char *argv[])
             long long int count=0;
             for(int k=j;k<=i;k++)
                 count+=vec3[k]->cap;
-            printf("%lld",count);
+            printf("%lld\n",count);
         }
     }
 
