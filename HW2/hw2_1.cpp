@@ -10,14 +10,14 @@
 
 using namespace std;
 typedef struct  Cryptocurrency
-	{
-		int date;
-		char currencyname[30];
-		char exchangestore[30];
-		float low;
-		float high;
-		long long int cap;
-	} Currency;
+{
+    int date;
+    char currencyname[30];
+    char exchangestore[30];
+    float low;
+    float high;
+    long long int cap;
+} Currency;
 Currency Currencys[MAX_size];
 Currency *vec[MAX_size];
 Currency *vec1[MAX_size];
@@ -73,19 +73,19 @@ bool sort4(Currency *Cur1,Currency *Cur2)
 }
 
 
-//Currency 是用來呼叫structure 
+//Currency 是用來呼叫structure
 //Currencys strtucture 的名字
 int main(int argc, char *argv[])
 {
-	FILE *fp;
-//讀檔
-	int i=0;
+    FILE *fp;
+    //讀檔
+    int i=0;
     char command[10];
     char c[4];
     fp = fopen(argv[1],"r");
-
-	while(!feof(fp))
-	{
+    
+    while(!feof(fp))
+    {
         fscanf(fp,"%d%s%s%f%f%lld",&Currencys[i].date,Currencys[i].currencyname,Currencys[i].exchangestore,&Currencys[i].low,&Currencys[i].high,&Currencys[i].cap);
         vec[i]=&Currencys[i];
         vec1[i]=&Currencys[i];
@@ -95,20 +95,25 @@ int main(int argc, char *argv[])
     }
     int temp=i;
     fclose(fp);
-      stable_sort(vec ,vec+i,sort1);
-      stable_sort(begin(vec1) ,begin(vec1)+i,sort2);
-      stable_sort(begin(vec2) ,begin(vec2)+i,sort3);
-      stable_sort(begin(vec3) ,begin(vec3)+i,sort4);
+    stable_sort(begin(vec1) ,begin(vec1)+i,sort2);
+    stable_sort(begin(vec2) ,begin(vec2)+i,sort3);
+    stable_sort(begin(vec3) ,begin(vec3)+i,sort4);
     while(scanf("%s",command)!=EOF)
     {
         int first=0;
         int last = i-1;
+        int times;
         char exchangestore2[30],currencyname2[30];
         int date1;
         if(strcmp(command,"end")==0)
             return 0;
         if(strcmp(command,"query")==0)
         {
+            if(times==0)
+            {
+                stable_sort(vec ,vec+i,sort1);
+                times++;
+            }
             int mid = (first+last)/2;
             scanf("%d%s%s",&date1,currencyname2,exchangestore2);
             string currencyname1=currencyname2;
@@ -273,7 +278,7 @@ int main(int argc, char *argv[])
             string tempcurrency=vec2[mid]->currencyname;
             int tempdate1=vec2[i]->date;
             string tempcurrency1=vec2[i]->currencyname;
-           if(first>last)
+            if(first>last)
             {
                 printf("none\n");
                 continue;
@@ -367,5 +372,5 @@ int main(int argc, char *argv[])
             printf("%lld\n",count);
         }
     }
-
-}    
+    
+}

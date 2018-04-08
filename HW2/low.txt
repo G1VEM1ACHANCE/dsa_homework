@@ -1,0 +1,63 @@
+
+        if(strcmp(command,"price")==0&&strcmp(c,"min")==0)
+        {
+            int mid = (first+last)/2;
+            scanf(“%d%s”,&date1,currencyname2);
+            string currencyname1=currencyname2;
+            string a1=vec2[mid]->currencyname;
+            
+	while(first<=last)
+            {
+                if(first==last)
+                {
+                    break;
+                }
+   
+                if(date1>vec2[mid]->date)
+                {
+                    first=mid+1;
+                }
+                if(date1<vec2[mid]->date)
+                {
+                    if(mid==0)
+                        last=mid;
+                    else
+                        last=mid-1;
+                }
+                if(date1==vec2[mid]->date)
+                {
+                    if(currencyname1>a1)
+                    {
+                        first=mid+1;
+                    }
+                    if(currencyname1<a1)
+                    {
+                        if(mid==0)
+                            last=mid;
+                        else
+                            last=mid-1;
+                    }
+                    if(currencyname1==a1)
+                    {
+                        break;
+                    }
+                }
+            }
+            int i=first;
+            int tempdate=vec2[mid]->date;
+            string tempcurrency=vec2[mid]->currencyname;
+            int tempdate1=vec2[i]->date;
+            string tempcurrency1=vec2[i]->currencyname;
+            if(first==last&&(tempdate1!=tempdate||currencyname1!=tempcurrency))
+            {
+                printf("none");
+                continue;
+            }
+            while(tempdate!=tempdate1||tempcurrency!=tempcurrency1)
+            {
+                i++;
+                tempdate1=vec2[i]->date;
+                tempcurrency1=vec2[i]->currencyname;
+            }
+            printf("%.4f\n",vec2[i]->low);
+        }
