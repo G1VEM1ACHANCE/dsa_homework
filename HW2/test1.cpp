@@ -33,15 +33,19 @@ int main(){
 Currency Currencys;
 vector<Currency> Currencies;
 Currencies.reserve(3);
+<<<<<<< HEAD
 vector<Currency *> vec;
 vec.reserve(3);
 vector<Currency *> vec1;
 vec1.reserve(3);
+=======
+>>>>>>> 2df3d0d57e374c1d419d29903dccb8b3860e2443
 int i=0;
 for(i=0;i<5;i++)
 {
     scanf("%s%s%s%f%f%lld",Currencys.date,Currencys.currencyname,Currencys.exchangestore,&Currencys.low,&Currencys.high,&Currencys.cap);
     Currencies.push_back(Currencys);
+<<<<<<< HEAD
     vec[i]=&Currencies[i];
 }
 printf("%s\n",vec[1]->date);
@@ -49,6 +53,10 @@ stable_sort(vec.begin(),vec.end(),sort1);
 for(i=0;i<5;i++)
     printf("%s\n",vec[i]->exchangestore);
    
+=======
+}
+printf("%s",Currencies[1].currencyname);
+>>>>>>> 2df3d0d57e374c1d419d29903dccb8b3860e2443
 }
 
 
