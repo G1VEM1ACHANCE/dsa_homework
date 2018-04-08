@@ -95,25 +95,19 @@ int main(int argc, char *argv[])
     }
     int temp=i;
     fclose(fp);
-    stable_sort(begin(vec1) ,begin(vec1)+i,sort2);
+    stable_sort(vec ,vec+i,sort1);
     stable_sort(begin(vec2) ,begin(vec2)+i,sort3);
     stable_sort(begin(vec3) ,begin(vec3)+i,sort4);
     while(scanf("%s",command)!=EOF)
     {
         int first=0;
         int last = i-1;
-        int times;
         char exchangestore2[30],currencyname2[30];
         int date1;
         if(strcmp(command,"end")==0)
             return 0;
         if(strcmp(command,"query")==0)
         {
-            if(times==0)
-            {
-                stable_sort(vec ,vec+i,sort1);
-                times++;
-            }
             int mid = (first+last)/2;
             scanf("%d%s%s",&date1,currencyname2,exchangestore2);
             string currencyname1=currencyname2;
@@ -182,25 +176,25 @@ int main(int argc, char *argv[])
             int mid = (first+last)/2;
             scanf("%d%s",&date1,currencyname2);
             string currencyname1=currencyname2;
-            string a1=vec1[mid]->currencyname;
+            string a1=vec[mid]->currencyname;
             
             while(first<=last)
             {
                 mid = (first+last)/2;
-                a1=vec1[mid]->currencyname;
+                a1=vec[mid]->currencyname;
                 
-                if(date1>vec1[mid]->date)
+                if(date1>vec[mid]->date)
                 {
                     first=mid+1;
                 }
-                else if(date1<vec1[mid]->date)
+                else if(date1<vec[mid]->date)
                 {
                     if(mid==0)
                         last=mid;
                     else
                         last=mid-1;
                 }
-                else if(date1==vec1[mid]->date)
+                else if(date1==vec[mid]->date)
                 {
                     if(currencyname1>a1)
                     {
@@ -219,23 +213,40 @@ int main(int argc, char *argv[])
                 
             }
             
-            int i=mid;
-            int tempdate=vec1[mid]->date;
-            string tempcurrency=vec1[mid]->currencyname;
-            int tempdate1=vec1[i]->date;
-            string tempcurrency1=vec1[i]->currencyname;
+            int i=mid,j=mid;
+            int tempdate=vec[mid]->date;
+            string tempcurrency=vec[mid]->currencyname;
+            int tempdate1=vec[i]->date;
+            string tempcurrency1=vec[i]->currencyname;
+            int tempdate2=vec[j]->date;
+            string tempcurrency2=vec[j]->currencyname;
             if(first>last)
             {
                 printf("none\n");
                 continue;
             }
+            float temphigh=vec[mid]->high;
             while(tempdate==tempdate1&&tempcurrency==tempcurrency1)
             {
+                if(vec[i]->high>temphigh)
+                    temphigh=vec[i]->high;
                 i++;
-                tempdate1=vec1[i]->date;
-                tempcurrency1=vec1[i]->currencyname;
+                if(i>=temp)
+                    break;
+                tempdate1=vec[i]->date;
+                tempcurrency1=vec[i]->currencyname;
             }
-            printf("%.4f\n",vec1[i-1]->high);
+            while(tempdate==tempdate2&&tempcurrency==tempcurrency2)
+            {
+                if(vec[j]->high>temphigh)
+                    temphigh=vec[j]->high;
+                j--;
+                if(j<0)
+                    break;
+                tempdate2=vec[j]->date;
+                tempcurrency2=vec[j]->currencyname;
+            }
+            printf("%.4f\n",temphigh);
             continue;
         }
         if(strcmp(command,"price")==0&&strcmp(c,"min")==0)
@@ -286,8 +297,11 @@ int main(int argc, char *argv[])
             while(tempdate==tempdate1&&tempcurrency==tempcurrency1)
             {
                 i--;
+                if(i<0)
+                    break;
                 tempdate1=vec2[i]->date;
                 tempcurrency1=vec2[i]->currencyname;
+                
             }
             printf("%.4f\n",vec2[i+1]->low);
         }
@@ -374,3 +388,4 @@ int main(int argc, char *argv[])
     }
     
 }
+
