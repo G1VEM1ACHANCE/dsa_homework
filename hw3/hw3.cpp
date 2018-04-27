@@ -47,7 +47,7 @@ int Evaluate(int array[5][5])
     if(countX>=4)
         countX1++;
     countO=0;countX=0;
-    for(int i=0,j=4;i<5&&j>0;i++,j--)
+    for(int i=0,j=4;i<5&&j>=0;i++,j--)
     {
         if(array[i][j]==-1)
             countX++;
@@ -58,6 +58,10 @@ int Evaluate(int array[5][5])
         countO1++;
     if(countX>=4)
         countX1++;
+   /* for (int j=0;j<5;j++){
+        printf("\n");
+        for(int k=0;k<5;k++)
+            printf("%d",array[j][k]);}*/
     if(countX1==countO1)
         return 0;
     else if(countX1>countO1)
@@ -75,6 +79,9 @@ void printresult(int i)
         printf("Draw");
     return;
 }
+
+//unordered_map<long long, int> mp;
+
 int whowin(int array[5][5],char round,int count)
 {
     int result;
