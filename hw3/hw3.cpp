@@ -1,6 +1,5 @@
 #include<cstdio>
 #include<iostream>
-#include<bitset>
 #include<unordered_map>
 using namespace std;
 int Evaluate(int array[5][5])
