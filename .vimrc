@@ -1,6 +1,5 @@
 set nocompatible
-filetype off
-
+filetype off 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
@@ -8,6 +7,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'geoffharcourt/vim-matchit'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'AutoComplPop'
+Plugin 'ervandew/supertab'
 call vundle#end()
 filetype plugin indent on
 
@@ -21,6 +21,8 @@ set shiftwidth=4
 set incsearch
 set hlsearch
 set autowrite
+set foldmethod=marker
+nnoremap <space> za
 autocmd Filetype html setlocal ts=2 sw=2
 
 colorscheme pixelmuerto
